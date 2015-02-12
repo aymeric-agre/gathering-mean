@@ -23,7 +23,11 @@ var PatternSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
-	}
+	},
+    cards: [{
+        type: Schema.ObjectId,
+        ref: 'Card'
+    }]
 });
 
 mongoose.model('Pattern', PatternSchema);
