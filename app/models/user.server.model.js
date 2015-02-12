@@ -37,10 +37,6 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
 	},
-	displayName: {
-		type: String,
-		trim: true
-	},
 	email: {
 		type: String,
 		trim: true,
@@ -75,10 +71,93 @@ var UserSchema = new Schema({
 		}],
 		default: ['user']
 	},
-	updated: {
+    profile: {
+        friends: [{
+            type: Schema.ObjectId,
+            ref: 'User'
+        }],
+        mainGuilds: [{
+            type: Schema.ObjectId,
+            ref: 'Guild'
+        }],
+        guilds: [{
+            type: Schema.ObjectId,
+            ref: 'Guild'
+        }],
+        competencies: [{
+            type: Schema.ObjectId,
+            ref: 'Competence'
+        }],
+        themes: [{
+            type: Schema.ObjectId,
+            ref: 'Theme'
+        }],
+        messages: [{
+            type: Schema.ObjectId,
+            ref: 'Message'
+        }],
+        gender: {
+            type: String,
+            required: 'Please fill in your gender'
+        },
+        country: {
+            type: String,
+            required: false
+        },
+        area: {
+            type: String,
+            required: false
+        },
+        town: {
+            type: String,
+            required: false
+        }
+    },
+    mission: {
+        currentMissions: [{
+            mission: {type: Schema.ObjectId, ref: 'Mission'},
+            step: {type: Number}
+        }],
+        achievedMissions: [{
+            type: Schema.ObjectId,
+            ref: 'Mission'
+        }],
+        tasksToDo: [{
+            type: Schema.ObjectId,
+            ref: 'Task'
+        }],
+        weeklyTask: [{
+            type: Schema.ObjectId,
+            ref: 'Task'
+        }]
+    },
+    game: {
+        experience: {type: Number},
+        level: {
+            levelNumber: {type: Number},
+            expToLevel: {type: Number}
+        },
+        avatar: {type: String},
+        gold: {type: Number},
+        cards: [{
+            type: Schema.ObjectId,
+            ref: 'Card'
+        }],
+        patterns: [{
+            type: Schema.ObjectId,
+            ref: 'Pattern'
+        }],
+        deck: [{
+            type: Schema.ObjectId,
+            ref: 'Card'
+        }],
+        design: [{type: String}],
+        currentDesign: {type: String}
+    },
+	updatedOn: {
 		type: Date
 	},
-	created: {
+	createdOn: {
 		type: Date,
 		default: Date.now
 	},
@@ -142,5 +221,19 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 		}
 	});
 };
+
+/**
+ * @brief Trouver des utilisateurs par nom, prénom, pseudo
+ * @param name
+ */
+
+UserSchema.statics.findUsersByName = function(name){
+    var _this = this;
+    var users = [];
+    var names = name.split(" ");
+    names.forEach(function() {
+        return _this.find({$or: {"firstName": name}, {"lastName": name}, {"username": name}});
+    });
+}
 
 mongoose.model('User', UserSchema);
