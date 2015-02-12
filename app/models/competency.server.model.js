@@ -37,6 +37,7 @@ var CompetencySchema = new Schema({
 /**
  * Competency methods
  */
+
 /**
  * @brief Ajoute une mission qui contient cette compétence
  * @param userId Utilisateur qui cherche à ajouter une mission à cette compétence
@@ -68,7 +69,7 @@ CompetencySchema.methods.addUser = function(userId, userIdToAdd){
  * @param userId Utilisateur qui cherche à ajouter une tache à cette compétence
  * @param taskIdToAdd Id de la tache à ajouter
  */
-CompetencySchema.methods.addUser = function(userId, taskIdToAdd){
+CompetencySchema.methods.addTask = function(userId, taskIdToAdd){
     CompetencySchema.methods.verifyRole(userId, 'admin', function(){
         this.model('Competency').tasks.push(taskIdToAdd, function(){
             console.log(taskIdToAdd + ' ajoutée');
@@ -76,6 +77,11 @@ CompetencySchema.methods.addUser = function(userId, taskIdToAdd){
     });
 };
 
+/**
+ * @brief Ajoute une mission qui contient cette compétence
+ * @param userId Utilisateur qui cherche à ajouter une tache à cette compétence
+ * @param missionIdToAdd Id de la mission à ajouter
+ */
 CompetencySchema.methods.addMission = function(userId, missionIdToAdd){
     CompetencySchema.methods.verifyRole(userId, 'admin', function(){
         this.model('Competency').missions.push(missionIdToAdd, function(){
