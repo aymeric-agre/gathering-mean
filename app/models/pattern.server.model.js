@@ -16,13 +16,9 @@ var PatternSchema = new Schema({
 		required: 'Please fill Pattern name',
 		trim: true
 	},
-	created: {
+	createdOn: {
 		type: Date,
 		default: Date.now
-	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
 	},
     cards: [{
         type: Schema.ObjectId,
