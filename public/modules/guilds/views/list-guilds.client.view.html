@@ -1,0 +1,19 @@
+<section data-ng-controller="GuildsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Guilds</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="guild in guilds" data-ng-href="#!/guilds/{{guild._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="guild.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="guild.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="guild.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!guilds.$resolved || guilds.length">
+    	No Guilds yet, why don't you <a href="/#!/guilds/create">create one</a>?
+    </div>
+</section>
