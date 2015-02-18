@@ -1,0 +1,69 @@
+<section data-ng-controller="SearchController">
+    <div class="container">
+        <div class="row grid">
+            </br>
+            <figure ng-repeat="img in imgs" class=" img-responsive slideEffect col-md-4 col-sm-4 col-xs-4">
+                <img ng-src="/modules/search/img/{{img}}_md.jpg" width="300" class="img-rounded img-responsive ">
+                <figcaption>
+                    <h2>{{img}}</h2>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+
+    <div class="jumbotron container">
+            <div class="row">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span><br></span>
+                    <input type="text" class="form-control input-lg" placeholder="Recherche">
+                </div>
+            </div>
+            <br/>
+            <div class="row text-center">
+                <button type="submit" class="btn btn-default btn-lg btn-primary" data-html="false">Recherche
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+            <hr>
+            <div class="row">
+                <h3>Recherche avancée</h3>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">Compétence</label>
+                        <input type="text" class="form-control" placeholder="Placeholder text">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">Thème</label>
+                        <input type="text" class="form-control" id="formInput250" placeholder="Placeholder text">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">Field label</label>
+                        <input type="text" class="form-control" id="formInput296" placeholder="Placeholder text">
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h2>Résultats</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-4">
+                <img src="http://127.0.0.1:40000/file:///D:/Logiciels/Pinegrow%20Web%20Designer/placeholders/img8.jpg" width="200" class="img-responsive"/>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-8">
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <ul class="list-group">
+                    <li class="list-group-item">Membre 1</li>
+                    <li class="list-group-item">Membre 2</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,140 @@
+.grid figure {
+    text-align: center;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.grid figure figcaption {
+    color: #fff;
+    margin-top: -40%;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    opacity : 0;
+}
+
+.grid figure img {
+    margin : 0 auto;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+    pointer-events: none;
+}
+
+.grid figure h2 {
+    word-spacing: -0.15em;
+    font-weight: 300;
+}
+
+figure.slideEffect figcaption::before,
+figure.slideEffect figcaption::after {
+    position: absolute;
+    content: '';
+    opacity: 0;
+}
+
+/*Barre horizontales*/
+figure.slideEffect figcaption::before {
+    top: 15%;
+    right: 10%;
+    bottom: 15%;
+    left: 10%;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+        -webkit-transform: scale(0,1);
+        -moz-transform: scale(0,1);
+        -ms-transform: scale(0,1);
+        -o-transform: scale(0,1);
+    transform: scale(0,1);
+        -webkit-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+/*Barre verticales*/
+figure.slideEffect figcaption::after {
+    top: 10%;
+    right: 15%;
+    bottom: 10%;
+    left: 15%;
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
+        -webkit-transform: scale(1,0);
+        -moz-transform: scale(1,0);
+        -ms-transform: scale(1,0);
+        -o-transform: scale(1,0);
+    transform: scale(1,0);
+        -webkit-transform-origin: 100% 0;
+        -moz-transform-origin: 100% 0;
+        -ms-transform-origin: 100% 0;
+        -o-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+}
+
+figure.slideEffect h2 {
+    padding-top: 26%;
+        -webkit-transition: -webkit-transform 0.35s;
+        -moz-transition: -webkit-transform 0.35s;
+        -ms-transition: -webkit-transform 0.35s;
+        -o-transition: -webkit-transform 0.35s;
+    transition: transform 0.35s;
+}
+
+figure.slideEffect img,
+figure.slideEffect figcaption::before,
+figure.slideEffect figcaption::after{
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        -moz-transition: opacity 0.35s, -moz-transform 0.35s;
+        -ms-transition: opacity 0.35s, -webkit-transform 0.35s;
+        -o-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+}
+
+figure.slideEffect:hover img {
+    opacity: 0.8;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+figure.slideEffect:hover figcaption{
+    opacity : 1;
+        -webkit-transition: opacity 1s;
+        -moz-transition: opacity 1s;
+        -ms-transition: opacity 1s;
+        -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+figure.slideEffect:hover figcaption::before,
+figure.slideEffect:hover figcaption::after {
+    opacity: 1;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+    transform: scale(1);
+}
+
+figure.slideEffect:hover h2 {
+    opacity: 1;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+figure.slideEffect:hover figcaption::after,
+figure.slideEffect:hover h2,
+figure.slideEffect:hover img {
+        -webkit-transition-delay: 0.15s;
+        -moz-transition-delay: 0.15s;
+        -ms-transition-delay: 0.15s;
+        -o-transition-delay: 0.15s;
+    transition-delay: 0.15s;
+}

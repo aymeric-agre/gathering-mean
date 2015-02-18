@@ -5,19 +5,37 @@ angular.module('messages').controller('MessagesController', ['$scope', '$statePa
 	function($scope, $stateParams, $location, Authentication, Messages) {
 		$scope.authentication = Authentication;
 
+
+        //  Contenu du message
+        $scope.messageContent = new Messages();
+        $scope.showMessage = function(message){$scope.messageContent = message;};
+
+		//  Répondre
+        $scope.answer = function(sender){
+            $location.path('messages/create');
+
+        };
+
+        $scope.answerAll = function(sender){
+            $location.path('messages/create');
+
+        };
+
+
 		// Create new Message
+        $scope.messageForm = new Messages();
 		$scope.create = function() {
-			// Create new Message object
-			var message = new Messages ({
-				name: this.name
-			});
 
 			// Redirect after save
-			message.$save(function(response) {
+            $scope.messageForm.$save(function(response) {
 				$location.path('messages/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+                $scope.userSender = '';
+                $scope.userRecipient = [];
+                $scope.subject = '';
+                $scope.content = '';
+
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -27,6 +45,7 @@ angular.module('messages').controller('MessagesController', ['$scope', '$statePa
 		$scope.remove = function(message) {
 			if ( message ) { 
 				message.$remove();
+                console.log(message);
 
 				for (var i in $scope.messages) {
 					if ($scope.messages [i] === message) {
@@ -38,17 +57,6 @@ angular.module('messages').controller('MessagesController', ['$scope', '$statePa
 					$location.path('messages');
 				});
 			}
-		};
-
-		// Update existing Message
-		$scope.update = function() {
-			var message = $scope.message;
-
-			message.$update(function() {
-				$location.path('messages/' + message._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
 		};
 
 		// Find a list of Messages

@@ -2,18 +2,38 @@
     <div class="page-header">
         <h1>Messages</h1>
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="message in messages" data-ng-href="#!/messages/{{message._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="message.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="message.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="message.name"></h4>
-        </a>
+
+    <div class="row form-inline">
+        <a href="/#!/messages/create" class="btn btn-default col-md-2 col-sm-2 col-xs-12">Nouveau message</a>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!messages.$resolved || messages.length">
-    	No Messages yet, why don't you <a href="/#!/messages/create">create one</a>?
+
+    <div class="row">
+        <h2>Boîte de réception</h2>
+        <ul ng-repeat="message in messages | limitTo : 10">
+            <li class="ligne" ng-click="showMessage(message)">
+                <ul class="row">
+                    <input type="checkbox" value="message">
+                    <li class="col-md-6">{{message.subject}}</li>
+                    <li class="col-md-3">{{message.userSender.displayName}}</li>
+                    <li class="col-md-2">{{message.sentOn | date:'mediumDate'}}</li>
+                </ul>
+            </li>
+        </ul>
     </div>
+
+    <!-- Contenu du mail -->
+    <div class="row">
+        <h2>Contenu du message</h2>
+        <span>De	: {{messageContent.userSender.displayName}}</span></br>
+        <span>Pour	: <span ng-repeat="recipient in messageContent.userRecipient">{{recipient.displayName}} - </span></span></br>
+        <span>Sujet	: {{messageContent.subject}}</span></br>
+        <input class="btn btn-default" value="Répondre" data-ng-click="answer(messageContent.userSender)">
+        <input class="btn btn-default" value="Répondre à tous" data-ng-click="answerAll(messageContent.userSender, messageContent.userRecipient)">
+        <input class="btn btn-default" value="Supprimer" data-ng-click="remove(messageContent);">
+        <textarea readonly class="form-control" >{{messageContent.content}}</textarea></br>
+    </div>
+
+
+
+
 </section>

@@ -6,14 +6,27 @@
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                    <h1>Nouveau mail</h1>
+                    <input data-ng-model="messageForm.userRecipient" class="form-control" placeholder="Destinataires" >
+                    <!--<select data-ng-model="messageForm.userRecipient" class="form-control" placeholder="Destinataires" >
+                        <option ng-repeat="user in users">{{user.displayName}}</option>
+                    </select>-->
+
+                    <!--<div class="col-md-2" data-ng-show="newRecipient !== '' ">
+                        <ul class="show-data" data-ng-repeat="user in users | filter : newRecipient">
+                            <li  ng-click="addUserRecipient(user)">{{user.displayName}}</li>
+                        </ul>
                     </div>
+                    <ul class="col-md-10 userRecipientAdress" ng-repeat="recipient in recipientActivated">
+                        <li>{{recipient.displayName}} <span class="fa fa-times" ng-click="removeUserRecipient(recipient)"></span> </li>
+                    </ul>-->
+
+                    <input class="form-control" placeholder="Sujet du mail" data-ng-model="messageForm.subject"><br>
+                    <textarea class="form-control" data-ng-model="messageForm.content"></textarea></br>
+                    <input type="submit" value="Envoyer" class="btn btn-default">
+                    <a class="btn btn-default" href="/#!/messages">Annuler</a></br>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default">
-                </div>
+
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
 				</div>
