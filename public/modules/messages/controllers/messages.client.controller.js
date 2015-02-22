@@ -1,10 +1,10 @@
 'use strict';
 
 // Messages controller
-angular.module('messages').controller('MessagesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Messages',
-	function($scope, $stateParams, $location, Authentication, Messages) {
+angular.module('messages').controller('MessagesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Messages', 'allMessages',
+	function($scope, $stateParams, $location, Authentication, Messages, allMessages) {
 		$scope.authentication = Authentication;
-
+        $scope.messages = allMessages;
 
         //  Contenu du message
         $scope.messageContent = new Messages();
@@ -60,9 +60,9 @@ angular.module('messages').controller('MessagesController', ['$scope', '$statePa
 		};
 
 		// Find a list of Messages
-		$scope.find = function() {
+		/*$scope.find = function() {
 			$scope.messages = Messages.query();
-		};
+		};*/
 
 		// Find existing Message
 		$scope.findOne = function() {

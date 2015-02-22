@@ -33,24 +33,6 @@ exports.read = function(req, res) {
 	res.jsonp(req.theme);
 };
 
-/**
- * Update a Theme
- */
-exports.update = function(req, res) {
-	var theme = req.theme ;
-
-	theme = _.extend(theme , req.body);
-
-	theme.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(theme);
-		}
-	});
-};
 
 /**
  * Delete an Theme

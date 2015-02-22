@@ -5,12 +5,12 @@ module.exports = function(app) {
 	var messages = require('../../app/controllers/messages.server.controller');
 
 	// Messages Routes
-	app.route('/messages')
-		.get(messages.list)
+	app.route('/messages/:userId')
+		.get(users.requiresLogin, messages.list)
 		.post(users.requiresLogin, messages.create);
 
-	app.route('/messages/:messageId')
-		.get(messages.read)
+	app.route('/messages/:userId/:messageId')
+		.get(users.requiresLogin, messages.read)
 		.delete(users.requiresLogin, messages.hasAuthorization, messages.delete);
 
 	// Finish by binding the Message middleware

@@ -11,7 +11,6 @@ module.exports = function(app) {
 
 	app.route('/competencies/:competencyId')
 		.get(competencies.read)
-		.put(users.requiresLogin, competencies.hasAuthorization, competencies.update)
 		.delete(users.requiresLogin, competencies.hasAuthorization, competencies.delete);
 
 	// Finish by binding the Competency middleware

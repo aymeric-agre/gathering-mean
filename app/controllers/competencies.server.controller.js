@@ -33,24 +33,6 @@ exports.read = function(req, res) {
 	res.jsonp(req.competency);
 };
 
-/**
- * Update a Competency
- */
-exports.update = function(req, res) {
-	var competency = req.competency ;
-
-	competency = _.extend(competency , req.body);
-
-	competency.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(competency);
-		}
-	});
-};
 
 /**
  * Delete an Competency

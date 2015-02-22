@@ -11,7 +11,6 @@ module.exports = function(app) {
 
 	app.route('/themes/:themeId')
 		.get(themes.read)
-		.put(users.requiresLogin, themes.hasAuthorization, themes.update)
 		.delete(users.requiresLogin, themes.hasAuthorization, themes.delete);
 
 	// Finish by binding the Theme middleware

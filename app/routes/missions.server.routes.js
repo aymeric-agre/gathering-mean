@@ -5,8 +5,8 @@ module.exports = function(app) {
 	var missions = require('../../app/controllers/missions.server.controller');
 
 	// Missions Routes
-	app.route('/missions')
-		.get(missions.list)
+	app.route('/missions/')
+		.get(users.requiresLogin,missions.list)
 		.post(users.requiresLogin, missions.create);
 
 	app.route('/missions/:missionId')

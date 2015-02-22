@@ -40,17 +40,6 @@ angular.module('competencies').controller('CompetenciesController', ['$scope', '
 			}
 		};
 
-		// Update existing Competency
-		$scope.update = function() {
-			var competency = $scope.competency;
-
-			competency.$update(function() {
-				$location.path('competencies/' + competency._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
 		// Find a list of Competencies
 		$scope.find = function() {
 			$scope.competencies = Competencies.query();

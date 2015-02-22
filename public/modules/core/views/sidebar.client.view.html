@@ -7,13 +7,13 @@
             <a href="/#!/settings/profile">Profil</a>
         </li>
         <li>
-            <a href="/#!/missions">Missions</a>
+            <a ui-sref="listMissions">Missions</a>
         </li>
         <li>
-        <a href="/#!/messages">Messagerie</a>
+            <a ui-sref="listMessages({userId : authentication.user._id})">Messagerie</a>
         </li>
         <li>
-            <a href="/#!/search">Recherche</a>
+            <a ui-sref="search">Recherche</a>
         </li>
 
     </ul>
