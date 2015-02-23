@@ -22,10 +22,10 @@ var MessageSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
-    userRecipient: {
+    userRecipient: [{
         type: Schema.ObjectId,
         ref: 'User'
-    },
+    }],
     subject: {
         type: String,
         default: ''
