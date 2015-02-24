@@ -10,23 +10,36 @@ var mongoose = require('mongoose'),
  * Message Schema
  */
 var MessageSchema = new Schema({
-    userSender: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-	userRecipient: {
-        type: String,
-        //ref: 'User',
-		required: 'Please fill Message userSender',
-		trim: true
-	},
-    subject : {type : String},
-    content : {type : String},
-    sentOn: {
+	createdOn: { //Date de création du message
 		type: Date,
 		default: Date.now
-	}
-
+	},
+    sendedOn: {
+        type: Date,
+        default: Date.now
+    },
+	userSender: { //Expéditeur du message
+		type: Schema.ObjectId,
+		ref: 'User'
+	},
+    userRecipient: [{
+        type: Schema.ObjectId,
+        ref: 'User',
+        required: 'Please fill Message userRecipient',
+        trim: true
+    }],
+    subject: {
+        type: String,
+        default: ''
+    },
+    content: {
+        type: String,
+        default: ''
+    },
+    viewed: {
+        type: Boolean,
+        default: false
+    }
 });
 
 mongoose.model('Message', MessageSchema);
