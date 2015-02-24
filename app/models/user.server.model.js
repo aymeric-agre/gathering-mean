@@ -231,10 +231,10 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 UserSchema.statics.findUsersByName = function(inputName){
     var _this = this;
     var users = [];
-    var names = inputName.split(" ");
+    var names = inputName.split(' ');
     var conti = false;
     names.forEach(function(name, index, array){
-        _this.find({$or: [{"firstName": name}, {"lastName": name}, {"username": name}]}, function(err, foundUsers){
+        _this.find({$or: [{'firstName': name}, {'lastName': name}, {'username': name}]}, function(err, foundUsers){
             if(!err){
                 foundUsers.forEach(function(foundUser){
                     if(foundUser.indexOf(users) < 0){
@@ -242,12 +242,12 @@ UserSchema.statics.findUsersByName = function(inputName){
                     }
                 });
             }
-            if(index == array.length - 1){
+            if(index === array.length - 1){
                 conti = true;
             }
         });
     });
-    if(conti == true){
+    if(conti === true){
         return users;
     }
 };
@@ -315,7 +315,7 @@ UserSchema.methods.addDesign = function(designToAdd){
 UserSchema.methods.updateDesign = function(designToUpdate){
     var _this = this;
     var currentDesign = _this.model('User').game.currentDesign;
-    if(designToUpdate != currentDesign){
+    if(designToUpdate !== currentDesign){
         currentDesign = designToUpdate;
     }
 };

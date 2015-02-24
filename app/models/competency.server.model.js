@@ -46,7 +46,7 @@ var CompetencySchema = new Schema({
 CompetencySchema.methods.addMission = function(userId, missionIdToAdd){
     CompetencySchema.methods.verifyRole(userId, 'admin', function(){
         this.model('Competency').missions.push(missionIdToAdd, function(){
-            console.log(missionId + ' ajoutée');
+            console.log(missionIdToAdd + ' ajoutée');
         });
     });
 };
@@ -85,7 +85,7 @@ CompetencySchema.methods.addTask = function(userId, taskIdToAdd){
 CompetencySchema.methods.addMission = function(userId, missionIdToAdd){
     CompetencySchema.methods.verifyRole(userId, 'admin', function(){
         this.model('Competency').missions.push(missionIdToAdd, function(){
-            console.log(missionId + ' ajoutée');
+            console.log(missionIdToAdd + ' ajoutée');
         });
     });
 };

@@ -70,12 +70,12 @@ var TaskSchema = new Schema({
 TaskSchema.methods.checkResult = function(resultTeste){
     if(resultTeste<=this.model('Task').result) { //Si on a assez de points
         for(var i=0;i<this.model('Task').missions.size;i++) {
-            currentUser.achieveTask(this.model('Task')._id,this.model('Task').missions(i))
+            currentUser.achieveTask(this.model('Task')._id,this.model('Task').missions(i));
         }
     }
     else
     {
-        console.log("Result ne match pas.");
+        console.log('Result ne match pas.');
     }
 };
 

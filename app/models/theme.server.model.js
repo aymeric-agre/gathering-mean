@@ -47,7 +47,7 @@ var ThemeSchema = new Schema({
 ThemeSchema.methods.addMission = function(userId, missionIdToAdd){
     ThemeSchema.methods.verifyRole(userId, 'admin', function(){
         this.model('Theme').missions.push(missionIdToAdd, function(){
-            console.log(missionId + ' ajoutée');
+            console.log(missionIdToAdd + ' ajoutée');
         });
     });
 };
@@ -86,7 +86,7 @@ ThemeSchema.methods.addTask = function(userId, taskIdToAdd){
 ThemeSchema.methods.addMission = function(userId, missionIdToAdd){
     ThemeSchema.methods.verifyRole(userId, 'admin', function(){
         this.model('Theme').missions.push(missionIdToAdd, function(){
-            console.log(missionId + ' ajoutée');
+            console.log(missionIdToAdd + ' ajoutée');
         });
     });
 };
