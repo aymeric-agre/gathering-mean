@@ -1,9 +1,11 @@
 'use strict';
 
 // Missions controller
-angular.module('missions').controller('MissionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Missions',
-	function($scope, $stateParams, $location, Authentication, Missions) {
-		$scope.authentication = Authentication;
+angular.module('missions').controller('MissionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Missions', 'missions',
+	function($scope, $stateParams, $location, Authentication, Missions, missions) {
+
+        $scope.authentication = Authentication;
+        $scope.missions = missions;
 
 		// Create new Mission
 		$scope.create = function() {
@@ -25,7 +27,7 @@ angular.module('missions').controller('MissionsController', ['$scope', '$statePa
 
 		// Remove existing Mission
 		$scope.remove = function(mission) {
-			if ( mission ) { 
+			if ( mission ) {
 				mission.$remove();
 
 				for (var i in $scope.missions) {
@@ -51,16 +53,9 @@ angular.module('missions').controller('MissionsController', ['$scope', '$statePa
 			});
 		};
 
-		// Find a list of Missions
-		$scope.find = function() {
-			$scope.missions = Missions.query();
-		};
-
 		// Find existing Mission
 		$scope.findOne = function() {
-			$scope.mission = Missions.get({ 
-				missionId: $stateParams.missionId
-			});
+			$scope.mission = Missions.get({missionId: $stateParams.missionId});
 		};
 	}
 ]);

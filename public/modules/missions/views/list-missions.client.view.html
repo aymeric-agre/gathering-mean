@@ -1,19 +1,20 @@
-<section data-ng-controller="MissionsController" data-ng-init="find()">
+<section>
     <div class="page-header">
-        <h1>Missions</h1>
+        <h1>Missions <i ui-sref="mission.createMission" class="glyphicon glyphicon-plus"></i></h1>
+
     </div>
     <div class="list-group">
-        <a data-ng-repeat="mission in missions" data-ng-href="#!/missions/{{mission._id}}" class="list-group-item">
-			<small class="list-group-item-text">
+        <a data-ng-repeat="mission in missions"  ui-sref="mission.viewMission({missionId : mission._id})" class="list-group-item">
+			<small class="list-group-item-text" >
 				Posted on
 				<span data-ng-bind="mission.created | date:'medium'"></span>
 				by
 				<span data-ng-bind="mission.user.displayName"></span>
 			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="mission.name"></h4>
+			<h4 class="list-group-item-heading" data-ng-bind="mission.name" ></h4>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!missions.$resolved || missions.length">
-    	No Missions yet, why don't you <a href="/#!/missions/create">create one</a>?
+    	No Missions yet, why don't you <a ui-sref="mission.createMission">create one</a>?
     </div>
 </section>
