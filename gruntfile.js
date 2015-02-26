@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 			clientViews: {
 				files: watchFiles.clientViews,
 				options: {
-					livereload: true,
+					livereload: true
 				}
 			},
 			clientJS: {
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 		},
 		csslint: {
 			options: {
-				csslintrc: '.csslintrc',
+				csslintrc: '.csslintrc'
 			},
 			all: {
 				src: watchFiles.clientCSS
@@ -139,11 +139,28 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'karma.conf.js'
 			}
-		}
+		},
+        shell: {
+            mongodb: {
+                command: 'mongod --dbpath ./data/db',
+                options: {
+                    async: true,
+                    stdout: false,
+                    stderr: true,
+                    failOnError: true,
+                    execOptions: {
+                        cwd: '.'
+                    }
+                }
+            }
+        }
 	});
 
 	// Load NPM tasks
 	require('load-grunt-tasks')(grunt);
+
+    //Call grunt-shell-spawn to enable async and multitask
+    grunt.loadNpmTasks('grunt-shell-spawn');
 
 	// Making grunt default to force in order not to break the project.
 	grunt.option('force', true);
@@ -158,10 +175,10 @@ module.exports = function(grunt) {
 	});
 
 	// Default task(s).
-	grunt.registerTask('default', ['lint', 'concurrent:default']);
+	grunt.registerTask('default', ['shell:mongodb', 'lint', 'concurrent:default']);
 
 	// Debug task.
-	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
+	grunt.registerTask('debug', ['shell:mongodb', 'lint', 'concurrent:debug']);
 
 	// Secure task(s).
 	grunt.registerTask('secure', ['env:secure', 'lint', 'concurrent:default']);
