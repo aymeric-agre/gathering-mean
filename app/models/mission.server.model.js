@@ -32,13 +32,12 @@ var MissionSchema = new Schema({
     members: [{
         user: {
             type: Schema.ObjectId,
-            ref: 'User',
-            unique: true
+            ref: 'User'
         },
-        role: {
+        role: [{
             type: String,
             enum: ['user', 'participant', 'admin']
-        }
+        }]
     }],
     guild: [{
         type: Schema.ObjectId,

@@ -8,8 +8,8 @@ angular.module('missions').config(['$stateProvider',
         state('mission',{
             abstract : true,
             template : '<ui-view/>',
-            controller: 'MissionsController',
-            resolve: {missions : function(allMissionsLoader){return allMissionsLoader();}}
+            resolve: {missions: function (allMissionsLoader) {return allMissionsLoader();}},
+            controller: 'MissionsController'
         }).
 		state('mission.listMissions', {
 			url: '/missions',
@@ -21,11 +21,13 @@ angular.module('missions').config(['$stateProvider',
 		}).
 		state('mission.viewMission', {
 			url: '/missions/:missionId',
-			templateUrl: 'modules/missions/views/view-mission.client.view.html'
+			templateUrl: 'modules/missions/views/view-mission.client.view.html',
+            controller: 'MissionsController'    //Il faut recharger le controller sinon on ne récupère pas missionId
 		}).
 		state('mission.editMission', {
 			url: '/missions/:missionId/edit',
-			templateUrl: 'modules/missions/views/edit-mission.client.view.html'
+			templateUrl: 'modules/missions/views/edit-mission.client.view.html',
+            controller: 'MissionsController'
 		});
 	}
 ]);

@@ -13,9 +13,9 @@
 	<small>
 		<em class="text-muted">
 			Posted on
-			<span data-ng-bind="mission.created | date:'mediumDate'"></span>
+			<span data-ng-bind="mission.createdOn | date:'mediumDate'"></span>
 			by
-			<span data-ng-bind="mission.user.displayName"></span>
+			<span data-ng-bind="mission.createdBy.displayName"></span>
 		</em>
 	</small>
 </section>
