@@ -32,7 +32,8 @@ var MissionSchema = new Schema({
     members: [{
         user: {
             type: Schema.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            unique : true
         },
         roles: [{
             type: String,
