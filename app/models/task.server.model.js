@@ -64,11 +64,11 @@ var TaskSchema = new Schema({
 
 /**
  * @brief Teste si un résultat a la valeur attendue
- * @param resultTeste Valeur à laquelle on compare result
- * @param userId Utilisateur dont on teste le résultat
+ * @param resultTest Valeur à laquelle on compare result
+ * @param currentUser Utilisateur dont on teste le résultat
  */
-TaskSchema.methods.checkResult = function(resultTeste){
-    if(resultTeste<=this.model('Task').result) { //Si on a assez de points
+TaskSchema.methods.checkResult = function(resultTest, currentUser){
+    if(resultTest<=this.model('Task').result) { //Si on a assez de points
         for(var i=0;i<this.model('Task').missions.size;i++) {
             currentUser.achieveTask(this.model('Task')._id,this.model('Task').missions(i));
         }
