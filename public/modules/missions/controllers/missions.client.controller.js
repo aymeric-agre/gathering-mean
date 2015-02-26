@@ -1,23 +1,20 @@
 'use strict';
 
 // Missions controller
-angular.module('missions').controller('MissionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Missions',
-	function($scope, $stateParams, $location, Authentication, Missions) {
-		$scope.authentication = Authentication;
+angular.module('missions').controller('MissionsController', ['$scope', '$stateParams', '$state', 'Authentication', 'Missions', 'missions',
+	function($scope, $stateParams, $state, Authentication, Missions, missions) {
+
+        $scope.authentication = Authentication;
+        $scope.missions = missions;
 
 		// Create new Mission
+        $scope.missionForm = new Missions();
 		$scope.create = function() {
-			// Create new Mission object
-			var mission = new Missions ({
-				name: this.name
-			});
-
 			// Redirect after save
-			mission.$save(function(response) {
-				$location.path('missions/' + response._id);
-
+            $scope.missionForm.$save(function(response) {
+				$state.go('mission.viewMission', {missionId : response._id});
 				// Clear form fields
-				$scope.name = '';
+                $scope.missionForm = new Missions();
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -25,7 +22,7 @@ angular.module('missions').controller('MissionsController', ['$scope', '$statePa
 
 		// Remove existing Mission
 		$scope.remove = function(mission) {
-			if ( mission ) { 
+			if ( mission ) {
 				mission.$remove();
 
 				for (var i in $scope.missions) {
@@ -35,7 +32,7 @@ angular.module('missions').controller('MissionsController', ['$scope', '$statePa
 				}
 			} else {
 				$scope.mission.$remove(function() {
-					$location.path('missions');
+					$state.go('missions', {}, {reload : true});
 				});
 			}
 		};
@@ -45,22 +42,15 @@ angular.module('missions').controller('MissionsController', ['$scope', '$statePa
 			var mission = $scope.mission;
 
 			mission.$update(function() {
-				$location.path('missions/' + mission._id);
+				$state.go('missions/' + mission._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
 		};
 
-		// Find a list of Missions
-		$scope.find = function() {
-			$scope.missions = Missions.query();
-		};
-
 		// Find existing Mission
 		$scope.findOne = function() {
-			$scope.mission = Missions.get({ 
-				missionId: $stateParams.missionId
-			});
+			$scope.mission = Missions.get({missionId: $stateParams.missionId});
 		};
 	}
 ]);

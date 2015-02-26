@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var mission = new Mission(req.body);
-	mission.user = req.user;
+	mission.createdBy = req.user;
 
 	mission.save(function(err) {
 		if (err) {
@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Missions
  */
 exports.list = function(req, res) { 
-	Mission.find().sort('-created').populate('user', 'displayName').exec(function(err, missions) {
+	Mission.find().sort('-created').populate('createdBy', 'displayName').exec(function(err, missions) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
