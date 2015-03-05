@@ -1,0 +1,19 @@
+<section data-ng-controller="AvatarsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Avatars</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="avatar in avatars" data-ng-href="#!/avatars/{{avatar._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="avatar.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="avatar.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="avatar.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!avatars.$resolved || avatars.length">
+    	No Avatars yet, why don't you <a href="/#!/avatars/create">create one</a>?
+    </div>
+</section>
