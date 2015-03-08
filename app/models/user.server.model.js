@@ -50,7 +50,7 @@ var UserSchema = new Schema({
     },
     username: {
         type: String,
-        unique: 'testing error message',
+        unique: true,
         required: 'Please fill in a username',
         trim: true
     },
@@ -223,7 +223,7 @@ UserSchema.methods.savePicture = function(imgPath){
             throw err;
         }
         console.log('Image save to mongo');
-    })
+    });
 };
 
 /**
