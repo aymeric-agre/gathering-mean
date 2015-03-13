@@ -16,7 +16,7 @@ var CardSchema = new Schema({
 		required: 'Please fill Card name',
 		trim: true
 	},
-	created: {
+	createdOn: {
 		type: Date,
 		default: Date.now
 	},

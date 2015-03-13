@@ -11,6 +11,7 @@ angular.module('missions').controller('MissionsController', ['$scope', '$statePa
         $scope.missionForm = new Missions();
 		$scope.create = function() {
 			// Redirect after save
+            console.log($scope.missionForm);
             $scope.missionForm.$save(function(response) {
 				$state.go('mission.viewMission', {missionId : response._id});
 				// Clear form fields

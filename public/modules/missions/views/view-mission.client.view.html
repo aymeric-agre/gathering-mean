@@ -3,7 +3,7 @@
 		<h1 data-ng-bind="mission.name"></h1>
         <p>{{mission}}</p>
 	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == mission.members.user._id))">
+	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == mission.createdBy))">
 		<a class="btn btn-primary" ui-sref="/#!/missions/{{mission._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>

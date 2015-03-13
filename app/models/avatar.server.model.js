@@ -16,7 +16,7 @@ var AvatarSchema = new Schema({
 		required: 'Please fill Avatar name',
 		trim: true
 	},
-	created: {
+	createdOn: {
 		type: Date,
 		default: Date.now
 	},

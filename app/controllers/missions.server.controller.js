@@ -13,19 +13,17 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var mission = new Mission(req.body);
-    mission.createdBy = req.user;
+    mission.createdBy = req.user._id;
     mission.members.push({
-        user: req.user,
-        roles: ['admin']
+        'user': req.user._id,
+        'role': 'admin'
     });
     mission.save(function(err, createdMission) {
         if (err) {
-            console.log(err);
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            console.log('Mission créée: ' + createdMission);
             res.jsonp(mission);
         }
     });

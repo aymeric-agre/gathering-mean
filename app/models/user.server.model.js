@@ -214,17 +214,17 @@ UserSchema.methods.authenticate = function(password) {
  * Save
  * @param imgPath
  */
-UserSchema.methods.savePicture = function(imgPath){
-    var _this = this;
-    _this.model('User').profile.picture.data = fs.readFileSync(imgPath);
-    _this.model('User').profile.picture.contentType = 'image/png';
-    _this.save(function(err){
-        if(err){
-            throw err;
-        }
-        console.log('Image save to mongo');
-    });
-};
+//UserSchema.methods.savePicture = function(imgPath){
+//    var _this = this;
+//    _this.model('User').profile.picture.data = fs.readFileSync(imgPath);
+//    _this.model('User').profile.picture.contentType = 'image/png';
+//    _this.save(function(err){
+//        if(err){
+//            throw err;
+//        }
+//        console.log('Image save to mongo');
+//    });
+//};
 
 /**
  * Find possible not used username

@@ -16,7 +16,7 @@ var GuildSchema = new Schema({
 		required: 'Please fill Guild name',
 		trim: true
 	},
-	created: {
+	createdOn: {
 		type: Date,
 		default: Date.now
 	},

@@ -55,7 +55,7 @@ exports.delete = function(req, res) {
  * List of Themes
  */
 exports.list = function(req, res) { 
-	Theme.find().sort('-created').populate('user', 'displayName').exec(function(err, themes) {
+	Theme.find().sort('-createdOn').populate('user', 'displayName').exec(function(err, themes) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

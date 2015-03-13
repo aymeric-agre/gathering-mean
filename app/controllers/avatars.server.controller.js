@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Avatars
  */
 exports.list = function(req, res) { 
-	Avatar.find().sort('-created').populate('user', 'displayName').exec(function(err, avatars) {
+	Avatar.find().sort('-createdOn').populate('user', 'displayName').exec(function(err, avatars) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

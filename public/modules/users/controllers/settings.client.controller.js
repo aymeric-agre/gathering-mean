@@ -4,9 +4,9 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 	function($scope, $http, $location, Users, Authentication) {
 		$scope.user = Authentication.user;
 
-        if(!Authentication.user.game.currentAvatar){
-            $scope.user.game.currentAvatar = '/modules/users/img/profilePictures/' + $scope.user.gender + '.jpg';
-        }
+       /* if(!Authentication.user.game.currentAvatar){
+            //$scope.user.game.currentAvatar = '/modules/users/img/profilePictures/' + $scope.user.gender + '.jpg';
+        }*/
 
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');

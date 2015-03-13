@@ -16,7 +16,7 @@ var ThemeSchema = new Schema({
         required: 'Please fill Theme name',
         trim: true
     },
-    created: {
+    createdOn: {
         type: Date,
         default: Date.now
     },
