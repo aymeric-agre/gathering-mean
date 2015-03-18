@@ -35,7 +35,7 @@ var MissionSchema = new Schema({
             ref: 'User',
             unique : true
         },
-        role: [{
+        roles: [{
             type: String,
             enum: ['user', 'participant', 'admin']
         }]

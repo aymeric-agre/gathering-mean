@@ -7,9 +7,9 @@
         <a data-ng-repeat="mission in missions"  ui-sref="mission.viewMission({missionId : mission._id})" class="list-group-item">
 			<small class="list-group-item-text" >
 				Posted on
-				<span data-ng-bind="mission.created | date:'medium'"></span>
+				<span data-ng-bind="mission.createdOn | date:'mediumDate'"></span>
 				by
-				<span data-ng-bind="mission.user.displayName"></span>
+				<span data-ng-bind="mission.createdBy.displayName"></span>
 			</small>
 			<h4 class="list-group-item-heading" data-ng-bind="mission.name" ></h4>
         </a>

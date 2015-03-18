@@ -2,7 +2,7 @@
 	<div class="page-header">
 		<h1 data-ng-bind="mission.name"></h1>
 	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == mission.members.user._id))">
+	<div class="pull-right" show-authenticate="mission">
 		<a class="btn btn-primary" href="/#!/missions/{{mission._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
@@ -18,4 +18,5 @@
 			<span data-ng-bind="mission.createdBy.displayName"></span>
 		</em>
 	</small>
+
 </section>

@@ -48,9 +48,12 @@ angular.module('missions').controller('MissionsController', ['$scope', '$statePa
 			});
 		};
 
+
 		// Find existing Mission
 		$scope.findOne = function() {
-			$scope.mission = Missions.get({missionId: $stateParams.missionId});
+			Missions.get({missionId: $stateParams.missionId},
+                function(success){$scope.mission = success;},
+                function(error){console.log(error);});
 		};
 	}
 ]);

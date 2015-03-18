@@ -23,6 +23,15 @@ angular.module('missions').config(['$stateProvider',
 			url: '/missions/:missionId',
 			templateUrl: 'modules/missions/views/view-mission.client.view.html',
             controller: 'MissionsController'    //Il faut recharger le controller sinon on ne récupère pas missionId
+            /*resolve : {mission: ['Missions', '$stateParams', '$q',
+                        function(Missions, $stateParams, $q) {
+                        var delay = $q.defer();
+                        Missions.get({missionId: $stateParams.missionId},
+                            function(mission) {delay.resolve(mission);},
+                            function() {delay.reject('Mission non trouve : ' + $stateParams.missionId);});
+                        {return delay.promise;}	//A la fin on retourne le résultat
+                }]
+            }*/
 		}).
 		state('mission.editMission', {
 			url: '/missions/:missionId/edit',
