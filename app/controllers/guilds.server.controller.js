@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Guilds
  */
 exports.list = function(req, res) { 
-	Guild.find().sort('-created').populate('user', 'displayName').exec(function(err, guilds) {
+	Guild.find().sort('-createdOn').populate('user', 'displayName').exec(function(err, guilds) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

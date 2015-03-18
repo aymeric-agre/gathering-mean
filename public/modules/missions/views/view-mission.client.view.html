@@ -1,6 +1,7 @@
 <section data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="mission.name"></h1>
+        <p>{{mission}}</p>
 	</div>
 	<div class="pull-right" show-authenticate="mission">
 		<a class="btn btn-primary" href="/#!/missions/{{mission._id}}/edit">
@@ -15,7 +16,7 @@
 			Posted on
 			<span data-ng-bind="mission.createdOn | date:'mediumDate'"></span>
 			by
-			<span data-ng-bind="mission.createdBy.displayName"></span>
+			<span data-ng-bind="mission.createdBy"></span>
 		</em>
 	</small>
 

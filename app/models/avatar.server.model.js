@@ -7,13 +7,13 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * Guild Schema
+ * Avatar Schema
  */
-var GuildSchema = new Schema({
+var AvatarSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		required: 'Please fill Guild name',
+		required: 'Please fill Avatar name',
 		trim: true
 	},
 	createdOn: {
@@ -26,4 +26,4 @@ var GuildSchema = new Schema({
 	}
 });
 
-mongoose.model('Guild', GuildSchema);
+mongoose.model('Avatar', AvatarSchema);

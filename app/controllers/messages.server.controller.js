@@ -55,7 +55,7 @@ exports.delete = function(req, res) {
  * List of Messages
  */
 exports.list = function(req, res) { 
-	Message.find().sort('-created').populate('user', 'displayName').exec(function(err, messages) {
+	Message.find().sort('-createdOn').populate('user', 'displayName').exec(function(err, messages) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

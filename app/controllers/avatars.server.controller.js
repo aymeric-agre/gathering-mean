@@ -5,102 +5,102 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
-	Task = mongoose.model('Task'),
+	Avatar = mongoose.model('Avatar'),
 	_ = require('lodash');
 
 /**
- * Create a Task
+ * Create a Avatar
  */
 exports.create = function(req, res) {
-	var task = new Task(req.body);
-	task.user = req.user;
+	var avatar = new Avatar(req.body);
+	avatar.user = req.user;
 
-	task.save(function(err) {
+	avatar.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(task);
+			res.jsonp(avatar);
 		}
 	});
 };
 
 /**
- * Show the current Task
+ * Show the current Avatar
  */
 exports.read = function(req, res) {
-	res.jsonp(req.task);
+	res.jsonp(req.avatar);
 };
 
 /**
- * Update a Task
+ * Update a Avatar
  */
 exports.update = function(req, res) {
-	var task = req.task ;
+	var avatar = req.avatar ;
 
-	task = _.extend(task , req.body);
+	avatar = _.extend(avatar , req.body);
 
-	task.save(function(err) {
+	avatar.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(task);
+			res.jsonp(avatar);
 		}
 	});
 };
 
 /**
- * Delete an Task
+ * Delete an Avatar
  */
 exports.delete = function(req, res) {
-	var task = req.task ;
+	var avatar = req.avatar ;
 
-	task.remove(function(err) {
+	avatar.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(task);
+			res.jsonp(avatar);
 		}
 	});
 };
 
 /**
- * List of Tasks
+ * List of Avatars
  */
 exports.list = function(req, res) { 
-	Task.find().sort('-createdOn').populate('user', 'displayName').exec(function(err, tasks) {
+	Avatar.find().sort('-createdOn').populate('user', 'displayName').exec(function(err, avatars) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(tasks);
+			res.jsonp(avatars);
 		}
 	});
 };
 
 /**
- * Task middleware
+ * Avatar middleware
  */
-exports.taskByID = function(req, res, next, id) { 
-	Task.findById(id).populate('user', 'displayName').exec(function(err, task) {
+exports.avatarByID = function(req, res, next, id) { 
+	Avatar.findById(id).populate('user', 'displayName').exec(function(err, avatar) {
 		if (err) return next(err);
-		if (! task) return next(new Error('Failed to load Task ' + id));
-		req.task = task ;
+		if (! avatar) return next(new Error('Failed to load Avatar ' + id));
+		req.avatar = avatar ;
 		next();
 	});
 };
 
 /**
- * Task authorization middleware
+ * Avatar authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.task.user.id !== req.user.id) {
+	if (req.avatar.user.id !== req.user.id) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();

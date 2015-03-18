@@ -13,27 +13,36 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var mission = new Mission(req.body);
-	mission.createdBy = req.user;
-    mission.members.push({user : req.user._id, roles:['admin']});
 
-	mission.save(function(err) {
-		if (err) {
-            console.log('erreur : ' + err);
-            console.log('mission : ' + mission);
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(mission);
-		}
-	});
+    mission.createdBy = req.user._id;
+    mission.members.push({
+        'user': req.user._id,
+        'role': 'admin'
+    });
+    mission.save(function(err, createdMission) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(mission);
+        }
+    });
 };
 
 /**
  * Show the current Mission
  */
 exports.read = function(req, res) {
-	res.jsonp(req.mission);
+    Mission.find({'_id':req.mission._id}).populate('createdBy', 'displayName').exec(function(err, mission) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(req.mission);
+        }
+    });
 };
 
 /**
@@ -76,7 +85,7 @@ exports.delete = function(req, res) {
  * List of Missions
  */
 exports.list = function(req, res) { 
-	Mission.find().sort('-created').populate('createdBy members').exec(function(err, missions) {
+	Mission.find({'members.user': req.user._id}).sort('-created').populate('createdBy', 'displayName').exec(function(err, missions) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

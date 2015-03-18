@@ -3,9 +3,8 @@
 		<form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin" autocomplete="off">
 			<fieldset>
 				<div class="form-group row">
-
                     <div class="col-md-4">
-                        <p>Image</p>
+                        <img ng-src="{{user.game.currentAvatar}}" max-width="200" height="200" data-ng-model="user.profile.picture"/>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <label for="firstName">First Name</label>

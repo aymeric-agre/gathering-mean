@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    fs = require('fs'),
     crypto = require('crypto');
 
 /**
@@ -49,9 +50,13 @@ var UserSchema = new Schema({
     },
     username: {
         type: String,
-        unique: 'testing error message',
+        unique: true,
         required: 'Please fill in a username',
         trim: true
+    },
+    gender: {
+        type: String,
+        required: 'Please fill in your gender'
     },
     password: {
         type: String,
@@ -99,10 +104,6 @@ var UserSchema = new Schema({
             type: Schema.ObjectId,
             ref: 'Message'
         }],
-        gender: {
-            type: String,
-            required: 'Please fill in your gender'
-        },
         country: {
             type: String,
             required: false
@@ -140,7 +141,14 @@ var UserSchema = new Schema({
             levelNumber: {type: Number},
             expToLevel: {type: Number}
         },
-        avatar: {type: String},
+        currentAvatar: {
+            type: Schema.ObjectId,
+            ref: 'Avatar'
+        },
+        availableAvatars: [{
+            type: Schema.ObjectId,
+            ref: 'Avatar'
+        }],
         gold: {type: Number},
         cards: [{
             type: Schema.ObjectId,
@@ -181,7 +189,6 @@ UserSchema.pre('save', function(next) {
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
         this.password = this.hashPassword(this.password);
     }
-
     next();
 });
 
@@ -202,6 +209,22 @@ UserSchema.methods.hashPassword = function(password) {
 UserSchema.methods.authenticate = function(password) {
     return this.password === this.hashPassword(password);
 };
+
+/**
+ * Save
+ * @param imgPath
+ */
+//UserSchema.methods.savePicture = function(imgPath){
+//    var _this = this;
+//    _this.model('User').profile.picture.data = fs.readFileSync(imgPath);
+//    _this.model('User').profile.picture.contentType = 'image/png';
+//    _this.save(function(err){
+//        if(err){
+//            throw err;
+//        }
+//        console.log('Image save to mongo');
+//    });
+//};
 
 /**
  * Find possible not used username

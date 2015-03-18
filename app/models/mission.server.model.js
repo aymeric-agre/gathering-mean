@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 /**
  * Module dependencies.
@@ -32,13 +32,12 @@ var MissionSchema = new Schema({
     members: [{
         user: {
             type: Schema.ObjectId,
-            ref: 'User',
-            unique : true
+            ref: 'User'
         },
-        roles: [{
-            type: String,
-            enum: ['user', 'participant', 'admin']
-        }]
+        role: {
+            type: String
+        },
+        _id: false
     }],
     guild: [{
         type: Schema.ObjectId,

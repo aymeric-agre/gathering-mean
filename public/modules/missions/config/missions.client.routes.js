@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 //Setting up route
 angular.module('missions').config(['$stateProvider',
@@ -36,7 +36,6 @@ angular.module('missions').config(['$stateProvider',
 		state('mission.editMission', {
 			url: '/missions/:missionId/edit',
 			templateUrl: 'modules/missions/views/edit-mission.client.view.html',
-            controller: 'MissionsController'
 		});
 	}
 ]);
