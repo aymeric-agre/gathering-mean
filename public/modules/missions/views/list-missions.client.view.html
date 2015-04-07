@@ -3,7 +3,7 @@
         <h1>Missions <i ui-sref="mission.createMission" class="glyphicon glyphicon-plus"></i></h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="mission in missions"  ui-sref="mission.viewMission({missionId : mission._id})" class="list-group-item">
+        <a data-ng-repeat="mission in missions"  ui-sref="thisMission.viewMission({missionId : mission._id})" class="list-group-item">
 			<small class="list-group-item-text" >
 				Posted on
 				<span data-ng-bind="mission.createdOn | date:'mediumDate'"></span>

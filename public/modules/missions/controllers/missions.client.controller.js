@@ -21,40 +21,5 @@ angular.module('missions').controller('MissionsController', ['$scope', '$statePa
 			});
 		};
 
-		// Remove existing Mission
-		$scope.remove = function(mission) {
-			if ( mission ) {
-				mission.$remove();
-
-				for (var i in $scope.missions) {
-					if ($scope.missions [i] === mission) {
-						$scope.missions.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.mission.$remove(function() {
-					$state.go('missions', {}, {reload : true});
-				});
-			}
-		};
-
-		// Update existing Mission
-		$scope.update = function() {
-			var mission = $scope.mission;
-
-			mission.$update(function() {
-				$state.go('missions/' + mission._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-
-		// Find existing Mission
-		$scope.findOne = function() {
-			Missions.get({missionId: $stateParams.missionId},
-                function(success){$scope.mission = success;},
-                function(error){console.log(error);});
-		};
 	}
 ]);

@@ -51,6 +51,10 @@ var MissionSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'Theme'
     }],
+    template:{
+        type:String,
+        default: ''
+    },
     steps: [{
         number: {
             type: Number

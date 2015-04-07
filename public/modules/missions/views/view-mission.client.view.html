@@ -1,10 +1,10 @@
-<section data-ng-init="findOne()">
+<section>
 	<div class="page-header">
 		<h1 data-ng-bind="mission.name"></h1>
         <p>{{mission}}</p>
 	</div>
 	<div class="pull-right" show-authenticate="mission">
-		<a class="btn btn-primary" href="/#!/missions/{{mission._id}}/edit">
+		<a class="btn btn-primary" ui-sref="thisMission.editMission({missionId : mission._id})">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
 		<a class="btn btn-primary" data-ng-click="remove();">
