@@ -1,20 +1,20 @@
 'use strict';
 
-angular.module('missions').controller('ThisMissionController', ['$scope','mission',
-	function($scope, mission) {
+angular.module('missions').controller('ThisMissionController', ['$scope','mission','$state',
+	function($scope, mission, $state) {
 
         $scope.mission = mission;
+        $scope.urlTemplate = 'modules/missions/views/templates/' + $scope.mission.template +'/' + $scope.mission.template + '.html';
         if($scope.mission.template !== ''){$scope.hasTemplate = true;}
         else {$scope.hasTemplate = false;}
 
 
         //Working with templates
         $scope.addTemplate = function() {
-            console.log('before ' + $scope.mission.template);
             if ($scope.mission.template === ''){
                 $scope.mission.template = 'japanese_game';
                 $scope.hasTemplate = !$scope.hasTemplate;
-                console.log('after ' + $scope.mission.template);
+                $scope.urlTemplate = 'modules/missions/views/templates/' + $scope.mission.template +'/' + $scope.mission.template + '.html';
             }
         };
 
@@ -24,7 +24,7 @@ angular.module('missions').controller('ThisMissionController', ['$scope','missio
             var mission = $scope.mission;
 
             mission.$update(function() {
-                $state.go('missions/' + mission._id);
+                $state.go('thisMissions/' + mission._id +'/view');
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
