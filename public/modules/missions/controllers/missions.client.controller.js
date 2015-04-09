@@ -13,7 +13,7 @@ angular.module('missions').controller('MissionsController', ['$scope', '$statePa
 			// Redirect after save
             console.log($scope.missionForm);
             $scope.missionForm.$save(function(response) {
-				$state.go('mission.viewMission', {missionId : response._id});
+				$state.go('thisMission.viewMission', {missionId : response._id});
 				// Clear form fields
                 $scope.missionForm = new Missions();
 			}, function(errorResponse) {

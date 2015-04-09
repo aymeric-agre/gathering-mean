@@ -54,3 +54,18 @@ exports.update = function(req, res) {
 exports.me = function(req, res) {
 	res.json(req.user || null);
 };
+
+/**
+ * List of Missions
+ */
+exports.list = function(req, res) {
+    User.find({}, 'username', function(err, users) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(users);
+        }
+    });
+};

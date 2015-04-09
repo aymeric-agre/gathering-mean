@@ -10,3 +10,17 @@ angular.module('users').factory('Users', ['$resource',
 		});
 	}
 ]);
+
+/*	Permet de charger toutes les missions	*/
+angular.module('users').factory('allUsersLoader', ['Users', '$q',
+    function(Users, $q) {
+        return function(){
+            var delay = $q.defer();
+            Users.query(function(users){
+                delay.resolve(users);
+            }, function(){
+                delay.reject('Pas de missions trouvés');
+            });
+            return delay.promise;
+        };
+    }]);

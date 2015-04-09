@@ -14,15 +14,14 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var message = new Message(req.body);
-	message.userSender = req.userSender;
-
-	message.save(function(err) {
+	message.userSender = req.params.userId;
+	message.save(function(err, messageSend) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(message);
+			res.jsonp(messageSend);
 		}
 	});
 };
@@ -55,8 +54,9 @@ exports.delete = function(req, res) {
  * List of Messages
  */
 exports.list = function(req, res) { 
-	Message.find().sort('-createdOn').populate('user', 'displayName').exec(function(err, messages) {
+	Message.find({userRecipient : req.params.userId }).sort('-createdOn').populate('userSender userRecipient', 'username').exec(function(err, messages) {
 		if (err) {
+            console.log(err);
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
@@ -70,7 +70,7 @@ exports.list = function(req, res) {
  * Message middleware
  */
 exports.messageByID = function(req, res, next, id) { 
-	Message.findById(id).populate('userSender', 'displayName').exec(function(err, message) {
+	Message.findById(id).populate('userSender', 'displayname').exec(function(err, message) {
 		if (err) return next(err);
 		if (! message) return next(new Error('Failed to load Message ' + id));
 		req.message = message ;

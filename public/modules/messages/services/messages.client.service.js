@@ -4,7 +4,7 @@
 angular.module('messages').factory('Messages', ['$resource',
     function($resource) {
 
-        return $resource('messages/:userId/:messageId', { messageId: '@_id'});
+        return $resource('messages/:userId/:messageId', {userId : user._id, messageId: '@_id'});
     }
 ]);
 

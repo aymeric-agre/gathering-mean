@@ -20,7 +20,9 @@ angular.module('missions').config(['$stateProvider',
 			url: '/create',
 			templateUrl: 'modules/missions/views/create-mission.client.view.html'
 		}).
-		state('thisMission',{
+
+
+        state('thisMission',{
             abstract : true,
             template : '<ui-view/>',
             url : '/thisMission/:missionId',
