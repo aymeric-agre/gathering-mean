@@ -1,19 +1,19 @@
 'use strict';
 
-angular.module('messages').controller('CreateMessageController', ['$scope', 'Messages', '$state', 'allUsers', 'message',
-	function($scope, Messages, $state, allUsers, message) {
+angular.module('messages').controller('CreateMessageController', ['$scope', 'Messages', '$state', 'allUsers', 'message','Authentication',
+	function($scope, Messages, $state, allUsers, message, Authentication) {
 
         $scope.users = allUsers;
         $scope.messageForm = new Messages();
 
         //Fill the new message if answer
-        if(message !== '{}') {
+        if(message !== '{}' && message !== '') {        //Si ce n'est pas vide
             var oldMessage = JSON.parse(message);    //params is a string, we need an object
             console.log(oldMessage);
             $scope.messageForm.userRecipient = [];
             $scope.messageForm.userRecipient[0] = oldMessage.userSender;
             for (var i = 1; i < (oldMessage.userRecipient.length + 1); i++) {
-                if(oldMessage.userRecipient[i - 1]._id !== user._id) {
+                if(oldMessage.userRecipient[i - 1]._id !== Authentication.user._id) {
                     $scope.messageForm.userRecipient.push(oldMessage.userRecipient[i - 1]);
                 }
             }

@@ -6,8 +6,6 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		// Redirect to home view when route not found
 		$urlRouterProvider.otherwise('/');
 
-        var user = window.user;
-
 		// Home state routing
 		$stateProvider.
 		state('home', {
